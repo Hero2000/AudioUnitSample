@@ -16,6 +16,14 @@
 		80A64A2216B0D50400F5CC3E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A2116B0D50400F5CC3E /* Default.png */; };
 		80A64A2416B0D50400F5CC3E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A2316B0D50400F5CC3E /* Default@2x.png */; };
 		80A64A2616B0D50400F5CC3E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A2516B0D50400F5CC3E /* Default-568h@2x.png */; };
+		80A64A2E16B0D8F100F5CC3E /* AUSAudioSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2D16B0D8F100F5CC3E /* AUSAudioSession.m */; };
+		80A64A3116B0D90000F5CC3E /* AUSAudioUnitGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A3016B0D90000F5CC3E /* AUSAudioUnitGraph.m */; };
+		80A64A3316B0E32600F5CC3E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A64A3216B0E32600F5CC3E /* AVFoundation.framework */; };
+		80A64A3516B0E33200F5CC3E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A64A3416B0E33200F5CC3E /* AudioToolbox.framework */; };
+		80A64A3916B0EBD400F5CC3E /* AUSAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A3716B0EBD400F5CC3E /* AUSAudioViewController.m */; };
+		80A64A3A16B0EBD400F5CC3E /* AUSAudioView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A3816B0EBD400F5CC3E /* AUSAudioView.xib */; };
+		80A64B6016B10D7F00F5CC3E /* CARingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80A64AFE16B10D7E00F5CC3E /* CARingBuffer.cpp */; };
+		80A64B7716B114F500F5CC3E /* AUSFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80A64B7616B114F500F5CC3E /* AUSFileReader.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +40,22 @@
 		80A64A2116B0D50400F5CC3E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		80A64A2316B0D50400F5CC3E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		80A64A2516B0D50400F5CC3E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		80A64A2C16B0D8F100F5CC3E /* AUSAudioSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUSAudioSession.h; sourceTree = "<group>"; };
+		80A64A2D16B0D8F100F5CC3E /* AUSAudioSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUSAudioSession.m; sourceTree = "<group>"; };
+		80A64A2F16B0D90000F5CC3E /* AUSAudioUnitGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUSAudioUnitGraph.h; sourceTree = "<group>"; };
+		80A64A3016B0D90000F5CC3E /* AUSAudioUnitGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUSAudioUnitGraph.m; sourceTree = "<group>"; };
+		80A64A3216B0E32600F5CC3E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		80A64A3416B0E33200F5CC3E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		80A64A3616B0EBD400F5CC3E /* AUSAudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUSAudioViewController.h; sourceTree = "<group>"; };
+		80A64A3716B0EBD400F5CC3E /* AUSAudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUSAudioViewController.m; sourceTree = "<group>"; };
+		80A64A3816B0EBD400F5CC3E /* AUSAudioView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AUSAudioView.xib; sourceTree = "<group>"; };
+		80A64AA516B10D7E00F5CC3E /* CAAtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAtomic.h; sourceTree = "<group>"; };
+		80A64ABD16B10D7E00F5CC3E /* CAAutoDisposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAutoDisposer.h; sourceTree = "<group>"; };
+		80A64ABE16B10D7E00F5CC3E /* CABitOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABitOperations.h; sourceTree = "<group>"; };
+		80A64AFE16B10D7E00F5CC3E /* CARingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CARingBuffer.cpp; sourceTree = "<group>"; };
+		80A64AFF16B10D7E00F5CC3E /* CARingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CARingBuffer.h; sourceTree = "<group>"; };
+		80A64B7516B114F500F5CC3E /* AUSFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUSFileReader.h; sourceTree = "<group>"; };
+		80A64B7616B114F500F5CC3E /* AUSFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUSFileReader.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80A64A3516B0E33200F5CC3E /* AudioToolbox.framework in Frameworks */,
+				80A64A3316B0E32600F5CC3E /* AVFoundation.framework in Frameworks */,
 				80A64A1016B0D50400F5CC3E /* UIKit.framework in Frameworks */,
 				80A64A1216B0D50400F5CC3E /* Foundation.framework in Frameworks */,
 				80A64A1416B0D50400F5CC3E /* CoreGraphics.framework in Frameworks */,
@@ -51,6 +77,8 @@
 		80A64A0016B0D50400F5CC3E = {
 			isa = PBXGroup;
 			children = (
+				80A64A3416B0E33200F5CC3E /* AudioToolbox.framework */,
+				80A64A3216B0E32600F5CC3E /* AVFoundation.framework */,
 				80A64A1516B0D50400F5CC3E /* AudioUnitSample */,
 				80A64A0E16B0D50400F5CC3E /* Frameworks */,
 				80A64A0C16B0D50400F5CC3E /* Products */,
@@ -78,8 +106,18 @@
 		80A64A1516B0D50400F5CC3E /* AudioUnitSample */ = {
 			isa = PBXGroup;
 			children = (
+				80A64A4316B10D7E00F5CC3E /* Core Audio Utility Classes */,
+				80A64A3616B0EBD400F5CC3E /* AUSAudioViewController.h */,
+				80A64A3716B0EBD400F5CC3E /* AUSAudioViewController.m */,
+				80A64A3816B0EBD400F5CC3E /* AUSAudioView.xib */,
+				80A64A2C16B0D8F100F5CC3E /* AUSAudioSession.h */,
+				80A64A2D16B0D8F100F5CC3E /* AUSAudioSession.m */,
+				80A64A2F16B0D90000F5CC3E /* AUSAudioUnitGraph.h */,
+				80A64A3016B0D90000F5CC3E /* AUSAudioUnitGraph.m */,
 				80A64A1E16B0D50400F5CC3E /* AUSAppDelegate.h */,
 				80A64A1F16B0D50400F5CC3E /* AUSAppDelegate.m */,
+				80A64B7516B114F500F5CC3E /* AUSFileReader.h */,
+				80A64B7616B114F500F5CC3E /* AUSFileReader.mm */,
 				80A64A1616B0D50400F5CC3E /* Supporting Files */,
 			);
 			path = AudioUnitSample;
@@ -97,6 +135,26 @@
 				80A64A2516B0D50400F5CC3E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		80A64A4316B10D7E00F5CC3E /* Core Audio Utility Classes */ = {
+			isa = PBXGroup;
+			children = (
+				80A64AA016B10D7E00F5CC3E /* PublicUtility */,
+			);
+			path = "Core Audio Utility Classes";
+			sourceTree = "<group>";
+		};
+		80A64AA016B10D7E00F5CC3E /* PublicUtility */ = {
+			isa = PBXGroup;
+			children = (
+				80A64AA516B10D7E00F5CC3E /* CAAtomic.h */,
+				80A64ABD16B10D7E00F5CC3E /* CAAutoDisposer.h */,
+				80A64ABE16B10D7E00F5CC3E /* CABitOperations.h */,
+				80A64AFE16B10D7E00F5CC3E /* CARingBuffer.cpp */,
+				80A64AFF16B10D7E00F5CC3E /* CARingBuffer.h */,
+			);
+			path = PublicUtility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +213,7 @@
 				80A64A2216B0D50400F5CC3E /* Default.png in Resources */,
 				80A64A2416B0D50400F5CC3E /* Default@2x.png in Resources */,
 				80A64A2616B0D50400F5CC3E /* Default-568h@2x.png in Resources */,
+				80A64A3A16B0EBD400F5CC3E /* AUSAudioView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +226,11 @@
 			files = (
 				80A64A1C16B0D50400F5CC3E /* main.m in Sources */,
 				80A64A2016B0D50400F5CC3E /* AUSAppDelegate.m in Sources */,
+				80A64A2E16B0D8F100F5CC3E /* AUSAudioSession.m in Sources */,
+				80A64A3116B0D90000F5CC3E /* AUSAudioUnitGraph.m in Sources */,
+				80A64A3916B0EBD400F5CC3E /* AUSAudioViewController.m in Sources */,
+				80A64B6016B10D7F00F5CC3E /* CARingBuffer.cpp in Sources */,
+				80A64B7716B114F500F5CC3E /* AUSFileReader.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +307,7 @@
 				GCC_PREFIX_HEADER = "AudioUnitSample/AudioUnitSample-Prefix.pch";
 				INFOPLIST_FILE = "AudioUnitSample/AudioUnitSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -254,6 +319,7 @@
 				GCC_PREFIX_HEADER = "AudioUnitSample/AudioUnitSample-Prefix.pch";
 				INFOPLIST_FILE = "AudioUnitSample/AudioUnitSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
