@@ -23,5 +23,6 @@ extern const NSTimeInterval AUSAudioSessionLatency_LowLatency;
 @property(nonatomic, assign) NSTimeInterval preferredLatency;
 @property(nonatomic, assign) BOOL active;
 @property(nonatomic, strong) NSString *category;
+@property(nonatomic, assign) BOOL overrideRouteToUseLoudspeaker;
 
 @end

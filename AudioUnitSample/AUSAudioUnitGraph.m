@@ -9,6 +9,7 @@
 #define CA_PREFER_FIXED_POINT 0
 
 #import "AUSAudioUnitGraph.h"
+#import "AUSAudioFileReader.h"
 
 static const AudioUnitElement inputElement = 1;
 static const AudioUnitElement outputElement = 0;
@@ -25,10 +26,9 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 @property(nonatomic, assign) AUGraph auGraph;
 @property(nonatomic, assign) AUNode ioNode;
 @property(nonatomic, assign) AUNode mixerNode;
-@property(nonatomic, assign) AUNode timePitchNode;
 @property(nonatomic, assign) AudioUnit ioUnit;
 @property(nonatomic, assign) AudioUnit mixerUnit;
-@property(nonatomic, assign) AudioUnit timePitchUnit;
+@property(nonatomic, retain) NSMutableArray *fileReaders;
 @end
 
 @implementation AUSAudioUnitGraph
@@ -38,6 +38,7 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 	if((self = [super init]))
 	{
 		_sampleRate = 44100.0;
+		_fileReaders = [@[[NSNull null], [NSNull null], [NSNull null]] mutableCopy];
 		[self createAudioUnitGraph];
 	}
 
@@ -71,8 +72,6 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 {
 	OSStatus status = noErr;
 
-	NSDate *date = [NSDate date];
-
 	status = NewAUGraph(&_auGraph);
 	CheckStatus(status, @"Could not create a new AUGraph", YES);
 
@@ -91,11 +90,6 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 
 	status = AUGraphInitialize(_auGraph);
 	CheckStatus(status, @"Could not initialize AUGraph", YES);
-
-	NSTimeInterval dur = [date timeIntervalSinceNow] * -1000.0;
-
-	NSLog(@"Took %0.3f milliseconds to build AUGraph", dur);
-	exit(0);
 }
 
 - (void)addAudioUnitNodes
@@ -119,15 +113,6 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 
 	status = AUGraphAddNode(_auGraph, &mixerDescription, &_mixerNode);
 	CheckStatus(status, @"Could not add mixer node to AUGraph", YES);
-
-	AudioComponentDescription timePitchDescription;
-	bzero(&timePitchDescription, sizeof(timePitchDescription));
-	timePitchDescription.componentManufacturer = kAudioUnitManufacturer_Apple;
-	timePitchDescription.componentType = kAudioUnitType_FormatConverter;
-	timePitchDescription.componentSubType = kAudioUnitSubType_NewTimePitch;
-
-	status = AUGraphAddNode(_auGraph, &timePitchDescription, &_timePitchNode);
-	CheckStatus(status, @"Could not add time-pitch node to AUGraph", YES);
 }
 
 - (void)getUnitsFromNodes
@@ -139,15 +124,11 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 
 	status = AUGraphNodeInfo(_auGraph, _mixerNode, NULL, &_mixerUnit);
 	CheckStatus(status, @"Could not retrieve node info for mixer node", YES);
-
-	status = AUGraphNodeInfo(_auGraph, _timePitchNode, NULL, &_timePitchUnit);
-	CheckStatus(status, @"Could not retrieve node info for time-pitch node", YES);
 }
 
 - (void)setAudioUnitProperties
 {
 	OSStatus status = noErr;
-	AudioStreamBasicDescription stereoFormat = [self noninterleavedPCMFormatWithChannels:2];
 	AudioStreamBasicDescription monoFormat = [self noninterleavedPCMFormatWithChannels:1];
 
 	status = AudioUnitSetProperty(_ioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, inputElement,
@@ -159,40 +140,34 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 								  &enableIO, sizeof(enableIO));
 	CheckStatus(status, @"Could not enable I/O on I/O unit input scope", YES);
 
-	UInt32 mixerElementCount = 2;
+	UInt32 mixerElementCount = 3;
 	status = AudioUnitSetProperty(_mixerUnit, kAudioUnitProperty_ElementCount, kAudioUnitScope_Input, 0,
 								  &mixerElementCount, sizeof(mixerElementCount));
 	CheckStatus(status, @"Could not set element count on mixer unit input scope", YES);
 
-	status = AudioUnitSetProperty(_mixerUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 1,
-								  &stereoFormat, sizeof(stereoFormat));
-	CheckStatus(status, @"Could not set stream format on mixer unit input scope, element 1", YES);
-
-	AURenderCallbackStruct callbackStruct;
-	callbackStruct.inputProc = &InputRenderCallback;
-	callbackStruct.inputProcRefCon = (__bridge void *)self;
-	status = AudioUnitSetProperty(_mixerUnit, kAudioUnitProperty_SetRenderCallback, kAudioUnitScope_Input, 1,
-								  &callbackStruct, sizeof(callbackStruct));
-	CheckStatus(status, @"Could not set render callback on mixer input scope", YES);
-
 	status = AudioUnitSetProperty(_mixerUnit, kAudioUnitProperty_SampleRate, kAudioUnitScope_Output, 0,
 								  &_sampleRate, sizeof(_sampleRate));
 	CheckStatus(status, @"Could not set sample rate on mixer unit output scope", YES);
-
-	status = AudioUnitSetProperty(_timePitchUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0,
-								  &monoFormat, sizeof(monoFormat));
-	CheckStatus(status, @"Could not set stream format on time-shift unit output scope", YES);
 }
 
 - (void)makeNodeConnections
 {
 	OSStatus status = noErr;
 
-	status = AUGraphConnectNodeInput(_auGraph, _ioNode, 1, _timePitchNode, 0);
-	CheckStatus(status, @"Could not connect I/O node output to time-pitch node input", YES);
+	AURenderCallbackStruct callbackStruct;
+	callbackStruct.inputProc = &InputRenderCallback;
+	callbackStruct.inputProcRefCon = (__bridge void *)self;
 
-	status = AUGraphConnectNodeInput(_auGraph, _timePitchNode, 0, _mixerNode, 0);
-	CheckStatus(status, @"Could not connect time-pitch node output to mixer node input", YES);
+	status = AudioUnitSetProperty(_mixerUnit, kAudioUnitProperty_SetRenderCallback, kAudioUnitScope_Input, 1,
+								  &callbackStruct, sizeof(callbackStruct));
+	CheckStatus(status, @"Could not set render callback on mixer input scope, element 1", YES);
+
+	status = AudioUnitSetProperty(_mixerUnit, kAudioUnitProperty_SetRenderCallback, kAudioUnitScope_Input, 2,
+								  &callbackStruct, sizeof(callbackStruct));
+	CheckStatus(status, @"Could not set render callback on mixer input scope, element 2", YES);
+
+	status = AUGraphConnectNodeInput(_auGraph, _ioNode, 1, _mixerNode, 0);
+	CheckStatus(status, @"Could not connect I/O node input to mixer node input", YES);
 
 	status = AUGraphConnectNodeInput(_auGraph, _mixerNode, 0, _ioNode, 0);
 	CheckStatus(status, @"Could not connect mixer node output to I/O node input", YES);
@@ -203,7 +178,6 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 	AUGraphStop(_auGraph);
 	AUGraphUninitialize(_auGraph);
 	AUGraphClose(_auGraph);
-	AUGraphRemoveNode(_auGraph, _timePitchNode);
 	AUGraphRemoveNode(_auGraph, _mixerNode);
 	AUGraphRemoveNode(_auGraph, _ioNode);
 	DisposeAUGraph(_auGraph);
@@ -226,22 +200,20 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 	CheckStatus(status, @"Could not stop AUGraph", YES);
 }
 
-- (void)setMixerPan:(Float32)mixerPan
+- (void)setVolume:(Float32)volume forElement:(UInt32)element
 {
-	_mixerPan = mixerPan;
-
-	OSStatus status = AudioUnitSetParameter(_mixerUnit, kMultiChannelMixerParam_Pan, kAudioUnitScope_Input, 0,
-											_mixerPan, 0);
-	CheckStatus(status, @"Could not set pan on mixer unit", NO);
+	OSStatus status = AudioUnitSetParameter(_mixerUnit,
+											kMultiChannelMixerParam_Volume,
+											kAudioUnitScope_Input,
+											element,
+											volume,
+											0);
+	CheckStatus(status, @"Could not set volume on mixer unit", NO);
 }
 
-- (void)setPitchAdjustment:(Float32)pitchAdjustment
+- (void)setFileReader:(id)reader forElement:(UInt32)element
 {
-	_pitchAdjustment = pitchAdjustment;
-
-	OSStatus status = AudioUnitSetParameter(_timePitchUnit, kNewTimePitchParam_Pitch, kAudioUnitScope_Global, 0,
-											_pitchAdjustment, 0);
-	CheckStatus(status, @"Could not adjust pitch of time-pitch unit", NO);
+	self.fileReaders[element] = reader;
 }
 
 - (OSStatus)renderData:(AudioBufferList *)data
@@ -250,16 +222,9 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 		  numberFrames:(UInt32)frames
 				 flags:(AudioUnitRenderActionFlags *)flags
 {
-	AudioUnitSampleType *leftSamples = data->mBuffers[0].mData;
-	AudioUnitSampleType *rightSamples = data->mBuffers[1].mData;
-
-	NSTimeInterval sampleTime = timeStamp->mSampleTime / self.sampleRate;
-	NSTimeInterval sampleDuration = 1 / self.sampleRate;
-
-	for(size_t i = 0; i < frames; ++i)
+	if(![self.fileReaders[element] isKindOfClass:[NSNull class]])
 	{
-		leftSamples[i] = rightSamples[i] = 0.05 * cos(2 * M_PI * 440 * sampleTime);
-		sampleTime += sampleDuration;
+		[self.fileReaders[element] readSamples:data atTimeStamp:timeStamp numberFrames:frames];
 	}
 
 	return noErr;

@@ -10,7 +10,8 @@
 
 @interface AUSAudioViewController : UIViewController
 
-- (IBAction)panSliderValueChanged:(id)sender;
-- (IBAction)pitchSliderValueChanged:(id)sender;
+@property (strong, nonatomic) IBOutletCollection(UISlider) NSArray *volumeSliders;
+
+- (IBAction)volumeSliderValueChanged:(id)sender;
 
 @end

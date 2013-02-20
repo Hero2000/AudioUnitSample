@@ -49,13 +49,13 @@ const NSTimeInterval AUSAudioSessionLatency_LowLatency = 0.0058;
 
 	NSError *error = nil;
 
-	if(![self.audioSession setPreferredHardwareSampleRate:self.preferredSampleRate error:&error])
+	if(![self.audioSession setPreferredSampleRate:self.preferredSampleRate error:&error])
 		NSLog(@"Error when setting sample rate on audio session: %@", error.localizedDescription);
 
 	if(![self.audioSession setActive:_active error:&error])
 		NSLog(@"Error when setting active state of audio session: %@", error.localizedDescription);
 
-	_currentSampleRate = [self.audioSession currentHardwareSampleRate];
+	_currentSampleRate = [self.audioSession sampleRate];
 }
 
 - (void)setPreferredLatency:(NSTimeInterval)preferredLatency
@@ -65,6 +65,16 @@ const NSTimeInterval AUSAudioSessionLatency_LowLatency = 0.0058;
 	NSError *error = nil;
 	if(![self.audioSession setPreferredIOBufferDuration:_preferredLatency error:&error])
 		NSLog(@"Error when setting preferred I/O buffer duration");
+}
+
+- (void)setOverrideRouteToUseLoudspeaker:(BOOL)overrideRouteToUseLoudspeaker
+{
+	_overrideRouteToUseLoudspeaker = overrideRouteToUseLoudspeaker;
+
+	UInt32 route = _overrideRouteToUseLoudspeaker ? kAudioSessionOverrideAudioRoute_Speaker : kAudioSessionOverrideAudioRoute_None;
+	OSStatus result = AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(UInt32), &route);
+	if(result != noErr)
+		NSLog(@"Warning: Could not override for speaker route: %ld", result);
 }
 
 @end

@@ -13,10 +13,9 @@
 
 @property(nonatomic, assign) Float64 sampleRate;
 
-@property(nonatomic, assign) Float32 mixerPan;
-@property(nonatomic, assign) Float32 pitchAdjustment;
-
 - (void)start;
 - (void)stop;
+- (void)setVolume:(Float32)volume forElement:(UInt32)element;
+- (void)setFileReader:(id)reader forElement:(UInt32)element;
 
 @end

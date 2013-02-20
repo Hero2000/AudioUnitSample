@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		802B4AC516D42C5400FD6AA0 /* AUSAudioFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 802B4AC416D42C5400FD6AA0 /* AUSAudioFileReader.m */; };
+		802B4AC816D4325700FD6AA0 /* what-you-know.wav in Resources */ = {isa = PBXBuildFile; fileRef = 802B4AC616D4325700FD6AA0 /* what-you-know.wav */; };
+		802B4AC916D4325700FD6AA0 /* float-on.wav in Resources */ = {isa = PBXBuildFile; fileRef = 802B4AC716D4325700FD6AA0 /* float-on.wav */; };
+		802B4ACB16D4391400FD6AA0 /* Icon-Large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802B4ACA16D4391400FD6AA0 /* Icon-Large@2x.png */; };
 		80A64A1016B0D50400F5CC3E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A64A0F16B0D50400F5CC3E /* UIKit.framework */; };
 		80A64A1216B0D50400F5CC3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A64A1116B0D50400F5CC3E /* Foundation.framework */; };
 		80A64A1416B0D50400F5CC3E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A64A1316B0D50400F5CC3E /* CoreGraphics.framework */; };
@@ -22,11 +26,14 @@
 		80A64A3516B0E33200F5CC3E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A64A3416B0E33200F5CC3E /* AudioToolbox.framework */; };
 		80A64A3916B0EBD400F5CC3E /* AUSAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A3716B0EBD400F5CC3E /* AUSAudioViewController.m */; };
 		80A64A3A16B0EBD400F5CC3E /* AUSAudioView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A3816B0EBD400F5CC3E /* AUSAudioView.xib */; };
-		80A64B6016B10D7F00F5CC3E /* CARingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80A64AFE16B10D7E00F5CC3E /* CARingBuffer.cpp */; };
-		80A64B7716B114F500F5CC3E /* AUSFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80A64B7616B114F500F5CC3E /* AUSFileReader.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		802B4AC316D42C5400FD6AA0 /* AUSAudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUSAudioFileReader.h; sourceTree = "<group>"; };
+		802B4AC416D42C5400FD6AA0 /* AUSAudioFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUSAudioFileReader.m; sourceTree = "<group>"; };
+		802B4AC616D4325700FD6AA0 /* what-you-know.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "what-you-know.wav"; sourceTree = "<group>"; };
+		802B4AC716D4325700FD6AA0 /* float-on.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "float-on.wav"; sourceTree = "<group>"; };
+		802B4ACA16D4391400FD6AA0 /* Icon-Large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Large@2x.png"; path = "../Icon-Large@2x.png"; sourceTree = "<group>"; };
 		80A64A0B16B0D50400F5CC3E /* AudioUnitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioUnitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A64A0F16B0D50400F5CC3E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		80A64A1116B0D50400F5CC3E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -49,13 +56,6 @@
 		80A64A3616B0EBD400F5CC3E /* AUSAudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUSAudioViewController.h; sourceTree = "<group>"; };
 		80A64A3716B0EBD400F5CC3E /* AUSAudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUSAudioViewController.m; sourceTree = "<group>"; };
 		80A64A3816B0EBD400F5CC3E /* AUSAudioView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AUSAudioView.xib; sourceTree = "<group>"; };
-		80A64AA516B10D7E00F5CC3E /* CAAtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAtomic.h; sourceTree = "<group>"; };
-		80A64ABD16B10D7E00F5CC3E /* CAAutoDisposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAutoDisposer.h; sourceTree = "<group>"; };
-		80A64ABE16B10D7E00F5CC3E /* CABitOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABitOperations.h; sourceTree = "<group>"; };
-		80A64AFE16B10D7E00F5CC3E /* CARingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CARingBuffer.cpp; sourceTree = "<group>"; };
-		80A64AFF16B10D7E00F5CC3E /* CARingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CARingBuffer.h; sourceTree = "<group>"; };
-		80A64B7516B114F500F5CC3E /* AUSFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUSFileReader.h; sourceTree = "<group>"; };
-		80A64B7616B114F500F5CC3E /* AUSFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUSFileReader.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +77,6 @@
 		80A64A0016B0D50400F5CC3E = {
 			isa = PBXGroup;
 			children = (
-				80A64A3416B0E33200F5CC3E /* AudioToolbox.framework */,
-				80A64A3216B0E32600F5CC3E /* AVFoundation.framework */,
 				80A64A1516B0D50400F5CC3E /* AudioUnitSample */,
 				80A64A0E16B0D50400F5CC3E /* Frameworks */,
 				80A64A0C16B0D50400F5CC3E /* Products */,
@@ -96,6 +94,8 @@
 		80A64A0E16B0D50400F5CC3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				80A64A3416B0E33200F5CC3E /* AudioToolbox.framework */,
+				80A64A3216B0E32600F5CC3E /* AVFoundation.framework */,
 				80A64A0F16B0D50400F5CC3E /* UIKit.framework */,
 				80A64A1116B0D50400F5CC3E /* Foundation.framework */,
 				80A64A1316B0D50400F5CC3E /* CoreGraphics.framework */,
@@ -106,18 +106,17 @@
 		80A64A1516B0D50400F5CC3E /* AudioUnitSample */ = {
 			isa = PBXGroup;
 			children = (
-				80A64A4316B10D7E00F5CC3E /* Core Audio Utility Classes */,
-				80A64A3616B0EBD400F5CC3E /* AUSAudioViewController.h */,
-				80A64A3716B0EBD400F5CC3E /* AUSAudioViewController.m */,
-				80A64A3816B0EBD400F5CC3E /* AUSAudioView.xib */,
+				80A64A1E16B0D50400F5CC3E /* AUSAppDelegate.h */,
+				80A64A1F16B0D50400F5CC3E /* AUSAppDelegate.m */,
+				802B4AC316D42C5400FD6AA0 /* AUSAudioFileReader.h */,
+				802B4AC416D42C5400FD6AA0 /* AUSAudioFileReader.m */,
 				80A64A2C16B0D8F100F5CC3E /* AUSAudioSession.h */,
 				80A64A2D16B0D8F100F5CC3E /* AUSAudioSession.m */,
 				80A64A2F16B0D90000F5CC3E /* AUSAudioUnitGraph.h */,
 				80A64A3016B0D90000F5CC3E /* AUSAudioUnitGraph.m */,
-				80A64A1E16B0D50400F5CC3E /* AUSAppDelegate.h */,
-				80A64A1F16B0D50400F5CC3E /* AUSAppDelegate.m */,
-				80A64B7516B114F500F5CC3E /* AUSFileReader.h */,
-				80A64B7616B114F500F5CC3E /* AUSFileReader.mm */,
+				80A64A3616B0EBD400F5CC3E /* AUSAudioViewController.h */,
+				80A64A3716B0EBD400F5CC3E /* AUSAudioViewController.m */,
+				80A64A3816B0EBD400F5CC3E /* AUSAudioView.xib */,
 				80A64A1616B0D50400F5CC3E /* Supporting Files */,
 			);
 			path = AudioUnitSample;
@@ -126,6 +125,9 @@
 		80A64A1616B0D50400F5CC3E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				802B4ACA16D4391400FD6AA0 /* Icon-Large@2x.png */,
+				802B4AC616D4325700FD6AA0 /* what-you-know.wav */,
+				802B4AC716D4325700FD6AA0 /* float-on.wav */,
 				80A64A1716B0D50400F5CC3E /* AudioUnitSample-Info.plist */,
 				80A64A1816B0D50400F5CC3E /* InfoPlist.strings */,
 				80A64A1B16B0D50400F5CC3E /* main.m */,
@@ -135,26 +137,6 @@
 				80A64A2516B0D50400F5CC3E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		80A64A4316B10D7E00F5CC3E /* Core Audio Utility Classes */ = {
-			isa = PBXGroup;
-			children = (
-				80A64AA016B10D7E00F5CC3E /* PublicUtility */,
-			);
-			path = "Core Audio Utility Classes";
-			sourceTree = "<group>";
-		};
-		80A64AA016B10D7E00F5CC3E /* PublicUtility */ = {
-			isa = PBXGroup;
-			children = (
-				80A64AA516B10D7E00F5CC3E /* CAAtomic.h */,
-				80A64ABD16B10D7E00F5CC3E /* CAAutoDisposer.h */,
-				80A64ABE16B10D7E00F5CC3E /* CABitOperations.h */,
-				80A64AFE16B10D7E00F5CC3E /* CARingBuffer.cpp */,
-				80A64AFF16B10D7E00F5CC3E /* CARingBuffer.h */,
-			);
-			path = PublicUtility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +196,9 @@
 				80A64A2416B0D50400F5CC3E /* Default@2x.png in Resources */,
 				80A64A2616B0D50400F5CC3E /* Default-568h@2x.png in Resources */,
 				80A64A3A16B0EBD400F5CC3E /* AUSAudioView.xib in Resources */,
+				802B4AC816D4325700FD6AA0 /* what-you-know.wav in Resources */,
+				802B4AC916D4325700FD6AA0 /* float-on.wav in Resources */,
+				802B4ACB16D4391400FD6AA0 /* Icon-Large@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,8 +214,7 @@
 				80A64A2E16B0D8F100F5CC3E /* AUSAudioSession.m in Sources */,
 				80A64A3116B0D90000F5CC3E /* AUSAudioUnitGraph.m in Sources */,
 				80A64A3916B0EBD400F5CC3E /* AUSAudioViewController.m in Sources */,
-				80A64B6016B10D7F00F5CC3E /* CARingBuffer.cpp in Sources */,
-				80A64B7716B114F500F5CC3E /* AUSFileReader.mm in Sources */,
+				802B4AC516D42C5400FD6AA0 /* AUSAudioFileReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,11 +287,14 @@
 		80A64A2A16B0D50400F5CC3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioUnitSample/AudioUnitSample-Prefix.pch";
 				INFOPLIST_FILE = "AudioUnitSample/AudioUnitSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -315,11 +302,14 @@
 		80A64A2B16B0D50400F5CC3E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioUnitSample/AudioUnitSample-Prefix.pch";
 				INFOPLIST_FILE = "AudioUnitSample/AudioUnitSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -343,6 +333,7 @@
 				80A64A2B16B0D50400F5CC3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
