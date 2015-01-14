@@ -93,7 +93,7 @@
 
 - (IBAction)volumeSliderValueChanged:(id)sender
 {
-	NSInteger index = 0;
+	UInt32 index = 0;
 	for(UISlider *volumeSlider in self.volumeSliders)
 	{
 		[self.graph setVolume:volumeSlider.value forElement:index];

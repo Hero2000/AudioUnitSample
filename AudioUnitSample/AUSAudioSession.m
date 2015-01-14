@@ -94,7 +94,7 @@ const NSTimeInterval AUSAudioSessionLatency_LowLatency = 0.0058;
 	UInt32 route = _overrideRouteToUseLoudspeaker ? kAudioSessionOverrideAudioRoute_Speaker : kAudioSessionOverrideAudioRoute_None;
 	OSStatus result = AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(UInt32), &route);
 	if(result != noErr)
-		NSLog(@"Warning: Could not override for speaker route: %ld", result);
+		NSLog(@"Warning: Could not override for speaker route: %d", (int)result);
 }
 
 @end

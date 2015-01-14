@@ -32,7 +32,7 @@
 #import "AUSAudioFileReader.h"
 
 static const AudioUnitElement inputElement = 1;
-static const AudioUnitElement outputElement = 0;
+//static const AudioUnitElement outputElement = 0;
 
 static OSStatus InputRenderCallback(void *inRefCon,
 									AudioUnitRenderActionFlags *ioActionFlags,
@@ -70,15 +70,15 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 	[self destroyAudioUnitGraph];
 }
 
-- (AudioStreamBasicDescription)noninterleavedPCMFormatWithChannels:(NSInteger)channels
+- (AudioStreamBasicDescription)noninterleavedPCMFormatWithChannels:(UInt32)channels
 {
-	size_t bytesPerSample = sizeof(AudioUnitSampleType);
+	UInt32 bytesPerSample = sizeof(Float32);
 
 	AudioStreamBasicDescription asbd;
 	bzero(&asbd, sizeof(asbd));
 	asbd.mSampleRate = _sampleRate;
 	asbd.mFormatID = kAudioFormatLinearPCM;
-	asbd.mFormatFlags = kAudioFormatFlagsAudioUnitCanonical;
+	asbd.mFormatFlags = kAudioFormatFlagsNativeFloatPacked | kAudioFormatFlagIsNonInterleaved;
 	asbd.mBitsPerChannel = 8 * bytesPerSample;
 	asbd.mBytesPerFrame = bytesPerSample;
 	asbd.mBytesPerPacket = bytesPerSample;
@@ -278,7 +278,7 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal)
         if(isprint(fourCC[0]) && isprint(fourCC[1]) && isprint(fourCC[2]) && isprint(fourCC[3]))
 			NSLog(@"%@: %s", message, fourCC);
 		else
-			NSLog(@"%@: %ld", message, status);
+			NSLog(@"%@: %d", message, (int)status);
 
 		if(fatal)
 			exit(-1);
